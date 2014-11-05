@@ -1,0 +1,22 @@
+{
+  "name": "html-to-jsx",
+  "version": "0.0.1",
+  "description": "A html to jsx compiler",
+  "main": "index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/littlehaker/html-to-jsx.git"
+  },
+  "keywords": [
+    "React",
+    "JSX"
+  ],
+  "author": "Uno Young (littlehaker@gmail.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/littlehaker/html-to-jsx/issues"
+  },
+  "homepage": "https://github.com/littlehaker/html-to-jsx"
+}
