@@ -1,11 +1,136 @@
+var attrs = [
+  'accept',
+  'acceptCharset',
+  'accessKey',
+  'action',
+  'allowFullScreen',
+  'allowTransparency',
+  'alt',
+  'async',
+  'autoComplete',
+  'autoFocus',
+  'autoPlay',
+  'capture',
+  'cellPadding',
+  'cellSpacing',
+  'charSet',
+  'challenge',
+  'checked',
+  'classID',
+  'className',
+  'cols',
+  'colSpan',
+  'content',
+  'contentEditable',
+  'contextMenu',
+  'controls',
+  'coords',
+  'crossOrigin',
+  'data',
+  'dateTime',
+  'defer',
+  'dir',
+  'disabled',
+  'download',
+  'draggable',
+  'encType',
+  'form',
+  'formAction',
+  'formEncType',
+  'formMethod',
+  'formNoValidate',
+  'formTarget',
+  'frameBorder',
+  'headers',
+  'height',
+  'hidden',
+  'high',
+  'href',
+  'hrefLang',
+  'htmlFor',
+  'httpEquiv',
+  'icon',
+  'id',
+  'inputMode',
+  'keyParams',
+  'keyType',
+  'label',
+  'lang',
+  'list',
+  'loop',
+  'low',
+  'manifest',
+  'marginHeight',
+  'marginWidth',
+  'max',
+  'maxLength',
+  'media',
+  'mediaGroup',
+  'method',
+  'min',
+  'minLength',
+  'multiple',
+  'muted',
+  'name',
+  'noValidate',
+  'open',
+  'optimum',
+  'pattern',
+  'placeholder',
+  'poster',
+  'preload',
+  'radioGroup',
+  'readOnly',
+  'rel',
+  'required',
+  'role',
+  'rows',
+  'rowSpan',
+  'sandbox',
+  'scope',
+  'scoped',
+  'scrolling',
+  'seamless',
+  'selected',
+  'shape',
+  'size',
+  'sizes',
+  'span',
+  'spellCheck',
+  'src',
+  'srcDoc',
+  'srcSet',
+  'start',
+  'step',
+  'style',
+  'summary',
+  'tabIndex',
+  'target',
+  'title',
+  'type',
+  'useMap',
+  'value',
+  'width',
+  'wmode',
+  'wrap'
+];
+
 function convert(html) {
-  return html
+  html = html
     .replace(/\sclass=/g, ' className=')
-    .replace(/\sfor=/g, ' htmlFor=')
-    .replace(/\sstyle="(.+?)"/g, function(attr, styles){
-      var jsxStyles = new StyleParser(styles).toJSXString();
-      return " style={{" + jsxStyles + "}}";
-    })
+    .replace(/\sfor=/g, ' htmlFor=');
+
+  attrs.forEach(function(attr) {
+    var origin_attr = attr.toLowerCase();
+    var regex = new RegExp('\\s' + origin_attr + '=', 'g');
+    html = html.replace(regex, ' ' + attr + '=');
+  });
+  
+  html = html.replace(/\sstyle="(.+?)"/g, function(attr, styles){
+    var jsxStyles = new StyleParser(styles).toJSXString();
+    return " style={{" + jsxStyles + "}}";
+  });
+  return html;
 }
 
 module.exports = convert;
