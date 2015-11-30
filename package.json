@@ -1,6 +1,6 @@
 {
   "name": "html-to-jsx",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A html to jsx compiler",
   "main": "index.js",
   "scripts": {
