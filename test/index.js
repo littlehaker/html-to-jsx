@@ -15,6 +15,12 @@ describe('html attributes', function() {
     });
 });
 
+describe('html tags', function() {
+    it('must has backslash', function() {
+        assert.equal(convert('<div><br><hr><img src=""><input type="text"><a>foo</a></div>'), '<div><br/><hr/><img src=""/><input type="text"/><a>foo</a></div>');
+    });
+});
+
 describe('comments', function() {
     it('should be replaced to jsx comment', function() {
         assert.equal(convert('<!-- this is a comment -->'), '{/* this is a comment */}');

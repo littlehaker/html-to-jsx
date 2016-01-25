@@ -119,15 +119,43 @@ function convert(html) {
   html = html
     .replace(/\sclass=/g, ' className=')
     .replace(/\sfor=/g, ' htmlFor=')
+    // replace comments
     .replace(/<!--/g, '{/*')
     .replace(/-->/g, '*/}');
 
+  [
+    "area",
+    "base",
+    "br",
+    "col",
+    "command",
+    "embed",
+    "hr",
+    "img",
+    "input",
+    "keygen",
+    "link",
+    "meta",
+    "param",
+    "source",
+    "track",
+    "wbr"
+  ].forEach(function (tag) {
+    var regex = new RegExp('<(' + tag + '[^/]*?)>', 'g');
+    html = html
+      .replace(regex, function (_, str) {
+        return '<' + str + '/>';
+      });
+  });
+
+  // replace attrNames
   attrs.forEach(function(attr) {
     var origin_attr = attr.toLowerCase();
     var regex = new RegExp('\\s' + origin_attr + '=', 'g');
     html = html.replace(regex, ' ' + attr + '=');
   });
 
+  // replace styles
   html = html.replace(/\sstyle="(.+?)"/g, function(attr, styles){
     var jsxStyles = new StyleParser(styles).toJSXString();
     return " style={{" + jsxStyles + "}}";
