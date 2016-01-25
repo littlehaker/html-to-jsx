@@ -1,3 +1,5 @@
+var cheerio = require('cheerio');
+
 var attrs = [
   'accept',
   'acceptCharset',
@@ -116,6 +118,12 @@ var attrs = [
 ];
 
 function convert(html) {
+  // add root element
+  var $ = cheerio.load(html);
+  if ($.root().children().length > 1) {
+    html = '<div>' + html + '</div>';
+  }
+
   html = html
     .replace(/\sclass=/g, ' className=')
     .replace(/\sfor=/g, ' htmlFor=')

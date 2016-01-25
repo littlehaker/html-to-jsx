@@ -16,7 +16,11 @@ describe('html attributes', function() {
 });
 
 describe('html tags', function() {
-    it('must has backslash', function() {
+    it('should have root element', function() {
+        assert.equal(convert('<div>foo</div><div>bar</div>'), '<div><div>foo</div><div>bar</div></div>');
+    })
+
+    it('should have backslash', function() {
         assert.equal(convert('<div><br><hr><img src=""><input type="text"><a>foo</a></div>'), '<div><br/><hr/><img src=""/><input type="text"/><a>foo</a></div>');
     });
 });
