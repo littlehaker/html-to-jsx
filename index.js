@@ -118,14 +118,16 @@ var attrs = [
 function convert(html) {
   html = html
     .replace(/\sclass=/g, ' className=')
-    .replace(/\sfor=/g, ' htmlFor=');
+    .replace(/\sfor=/g, ' htmlFor=')
+    .replace(/<!--/g, '{/*')
+    .replace(/-->/g, '*/}');
 
   attrs.forEach(function(attr) {
     var origin_attr = attr.toLowerCase();
     var regex = new RegExp('\\s' + origin_attr + '=', 'g');
     html = html.replace(regex, ' ' + attr + '=');
   });
-  
+
   html = html.replace(/\sstyle="(.+?)"/g, function(attr, styles){
     var jsxStyles = new StyleParser(styles).toJSXString();
     return " style={{" + jsxStyles + "}}";

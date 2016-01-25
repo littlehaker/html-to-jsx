@@ -15,6 +15,12 @@ describe('html attributes', function() {
     });
 });
 
+describe('comments', function() {
+    it('should be replaced to jsx comment', function() {
+        assert.equal(convert('<!-- this is a comment -->'), '{/* this is a comment */}');
+    });
+});
+
 describe('inline-style', function() {
     it('should be repleaced with js object', function() {
         assert.equal(convert('<div style="margin-top: 10px"></div>'), '<div style={{marginTop: 10}}></div>');
