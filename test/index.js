@@ -35,4 +35,8 @@ describe('inline-style', function() {
     it('should be repleaced with js object', function() {
         assert.equal(convert('<div style="margin-top: 10px"></div>'), '<div style={{marginTop: 10}}></div>');
     });
+
+    it('should shorthand margin syntax', function() {
+        assert.equal(convert('<div style="margin: 10px 0 2px"></div>'), '<div style={{margin: \'10px 0 2px\'}}></div>');
+    });
 });

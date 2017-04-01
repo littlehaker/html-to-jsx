@@ -315,7 +315,7 @@ StyleParser.prototype = {
     if (isNumeric(value)) {
       // If numeric, no quotes
       return value;
-    } else if (endsWith(value, 'px')) {
+    } else if (endsWith(value, 'px') && value.indexOf(' ') < 0) {
       // "500px" -> 500
       return trimEnd(value, 'px');
     } else {
