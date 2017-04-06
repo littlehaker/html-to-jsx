@@ -33,6 +33,6 @@ describe('comments', function() {
 
 describe('inline-style', function() {
     it('should be repleaced with js object', function() {
-        assert.equal(convert('<div style="margin-top: 10px"></div>'), '<div style={{marginTop: 10}}></div>');
+        assert.equal(convert('<div style="line-height: 49px; margin: 1px 0 2px;"></div>'), '<div style={{lineHeight: \'49px\', margin: \'1px 0 2px\'}}></div>');
     });
 });

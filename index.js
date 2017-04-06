@@ -315,9 +315,6 @@ StyleParser.prototype = {
     if (isNumeric(value)) {
       // If numeric, no quotes
       return value;
-    } else if (endsWith(value, 'px')) {
-      // "500px" -> 500
-      return trimEnd(value, 'px');
     } else {
       // Proably a string, wrap it in quotes
       return '\'' + value.replace(/'/g, '"') + '\'';
